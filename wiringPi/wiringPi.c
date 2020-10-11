@@ -2039,9 +2039,9 @@ int wiringPiISR (int pin, int mode, void (*function)(void))
 	execl ("/usr/local/bin/gpio", "gpio", "edge", pinS, modeS, (char *)NULL) ;
 	return wiringPiFailure (WPI_FATAL, "wiringPiISR: execl failed: %s\n", strerror (errno)) ;
       }
-      else if (access ("/usr/bin/gpio", X_OK) == 0)
+      else if (access ("$(SNAP)/lib/wiringpi-rpi/gpio", X_OK) == 0)
       {
-	execl ("/usr/bin/gpio", "gpio", "edge", pinS, modeS, (char *)NULL) ;
+	execl ("$(SNAP)/lib/wiringpi-rpi/gpio", "gpio", "edge", pinS, modeS, (char *)NULL) ;
 	return wiringPiFailure (WPI_FATAL, "wiringPiISR: execl failed: %s\n", strerror (errno)) ;
       }
       else
